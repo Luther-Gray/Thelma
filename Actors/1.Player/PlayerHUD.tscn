@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dqaerijwkjm4d"]
+
+[ext_resource type="Theme" uid="uid://dcirjlthjc61h" path="res://Assets/Themes/ProgressBars.tres" id="1_kiutr"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUD/HUD Gauge Atlas.png" id="3_sxydc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiutr"]
+atlas = ExtResource("3_sxydc")
+region = Rect2(0, 0, 144, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3o6a"]
+atlas = ExtResource("3_sxydc")
+region = Rect2(0, 64, 144, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxydc"]
+atlas = ExtResource("3_sxydc")
+region = Rect2(0, 128, 144, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dwwf"]
+atlas = ExtResource("3_sxydc")
+region = Rect2(0, 192, 144, 64)
+
+[node name="PlayerCanvas" type="CanvasLayer"]
+follow_viewport_scale = 2.0
+
+[node name="PlayerHUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Gauges" type="VBoxContainer" parent="PlayerHUD"]
+custom_minimum_size = Vector2(128, 208)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+offset_right = 416.0
+offset_bottom = 156.0
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("1_kiutr")
+theme_override_constants/separation = 8
+
+[node name="HP" type="TextureProgressBar" parent="PlayerHUD/Gauges"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_kiutr")
+value = 77.0
+nine_patch_stretch = true
+stretch_margin_left = 64
+stretch_margin_top = 16
+stretch_margin_right = 64
+stretch_margin_bottom = 16
+texture_over = SubResource("AtlasTexture_kiutr")
+texture_progress = SubResource("AtlasTexture_u3o6a")
+tint_over = Color(0.741176, 0.333333, 0.372549, 1)
+
+[node name="MP" type="TextureProgressBar" parent="PlayerHUD/Gauges"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_kiutr")
+value = 83.0
+nine_patch_stretch = true
+stretch_margin_left = 64
+stretch_margin_top = 16
+stretch_margin_right = 64
+stretch_margin_bottom = 16
+texture_over = SubResource("AtlasTexture_kiutr")
+texture_progress = SubResource("AtlasTexture_sxydc")
+tint_over = Color(0.4, 0.6, 0.8, 1)
+
+[node name="SP" type="TextureProgressBar" parent="PlayerHUD/Gauges"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+value = 79.0
+nine_patch_stretch = true
+stretch_margin_left = 64
+stretch_margin_top = 16
+stretch_margin_right = 64
+stretch_margin_bottom = 16
+texture_over = SubResource("AtlasTexture_kiutr")
+texture_progress = SubResource("AtlasTexture_7dwwf")
+tint_over = Color(0.52549, 0.74902, 0.560784, 1)

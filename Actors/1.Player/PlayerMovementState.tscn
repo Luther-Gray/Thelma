@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://708n5yyu5h7l"]
+
+[ext_resource type="Script" uid="uid://qovoh3bkdl82" path="res://Scripts/Systems/MovementStateMachine.gd" id="1_pyf8k"]
+[ext_resource type="Script" uid="uid://me655qjdh8pl" path="res://Scripts/Systems/MovementStates/IdleState.gd" id="2_ion3f"]
+[ext_resource type="Script" uid="uid://cfjitf03s8e1q" path="res://Scripts/Systems/MovementStates/WalkState.gd" id="3_ylyrg"]
+[ext_resource type="Script" uid="uid://cvq7jfwfkfbj2" path="res://Scripts/Systems/MovementStates/SprintState.gd" id="4_nrv6u"]
+[ext_resource type="Script" uid="uid://bppepp0og58gd" path="res://Scripts/Systems/MovementStates/JumpState.gd" id="5_v1ta3"]
+[ext_resource type="Script" uid="uid://13wg625k4oo6" path="res://Scripts/Systems/MovementStates/SneakState.gd" id="6_m1v0o"]
+
+[node name="MovementStateMachine" type="Node3D" node_paths=PackedStringArray("CurrentState")]
+script = ExtResource("1_pyf8k")
+CurrentState = NodePath("IdleState")
+
+[node name="IdleState" type="Node3D" parent="."]
+script = ExtResource("2_ion3f")
+
+[node name="WalkState" type="Node3D" parent="."]
+script = ExtResource("3_ylyrg")
+
+[node name="SprintState" type="Node3D" parent="."]
+script = ExtResource("4_nrv6u")
+
+[node name="JumpState" type="Node3D" parent="."]
+script = ExtResource("5_v1ta3")
+
+[node name="SneakState" type="Node3D" parent="."]
+script = ExtResource("6_m1v0o")

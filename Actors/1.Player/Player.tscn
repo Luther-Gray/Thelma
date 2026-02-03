@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://booly3i31xoih"]
+
+[ext_resource type="Script" path="res://Actors/1.Player/PlayerController.gd" id="1_h5j22"]
+[ext_resource type="PackedScene" path="res://Actors/1.Player/HUDGauges.tscn" id="3_tee05"]
+[ext_resource type="Script" uid="uid://dsqns73tdtcwn" path="res://Actors/1.Player/State Machine/PlayerHUD.gd" id="5_bhfuo"]
+[ext_resource type="Script" uid="uid://b6n1jdur57rse" path="res://Scripts/DevScripts/Debug.gd" id="5_bhhdu"]
+[ext_resource type="Texture2D" uid="uid://crkoy73lmbc26" path="res://UI/HUD/Crosshair.png" id="5_th2x0"]
+[ext_resource type="Script" uid="uid://6jsnt52qi3s4" path="res://Actors/1.Player/State Machine/ActionStateMachine.gd" id="6_nn08x"]
+[ext_resource type="FontFile" uid="uid://5g47nlidunmr" path="res://Theme/Fonts/Kubasta.ttf" id="7_bhfuo"]
+[ext_resource type="PackedScene" path="res://Actors/1.Player/PlayerMovementState.tscn" id="7_h5j22"]
+[ext_resource type="Script" uid="uid://dxtjdegyu66jm" path="res://Actors/1.Player/State Machine/ActionStates/IdleActionState.gd" id="12_glx4g"]
+[ext_resource type="Script" uid="uid://o4knu7m12xbd" path="res://Actors/1.Player/State Machine/ActionStates/InteractState.gd" id="15_1e7my"]
+[ext_resource type="Theme" uid="uid://dcirjlthjc61h" path="res://Theme/ProgressBars.tres" id="19_6efuh"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qnwc6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_psahw"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bhfuo"]
+viewport_path = NodePath("Head/PlayerCamera/Gauges/SubViewport")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pbw6q"]
+radius = 0.4
+height = 1.95
+
+[sub_resource type="Theme" id="Theme_bmxlf"]
+default_font = ExtResource("7_bhfuo")
+default_font_size = 28
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 10
+
+[node name="Player" type="CharacterBody3D" unique_id=613017845]
+floor_max_angle = 1.22173
+script = ExtResource("1_h5j22")
+
+[node name="PlayerAnimTree" type="AnimationTree" parent="." unique_id=1184906097]
+tree_root = SubResource("AnimationNodeStateMachine_qnwc6")
+
+[node name="CrouchRayCast" type="RayCast3D" parent="." unique_id=1352386546]
+transform = Transform3D(1, 0, 0, 0, -2.3, 8.74228e-08, 0, -2.01072e-07, -1, 0, 0, 0)
+hit_back_faces = false
+
+[node name="ClamberCast" type="ShapeCast3D" parent="." unique_id=123576195]
+transform = Transform3D(0.69615, 0, 0, 0, 1.0038, 0, 0, 0, 0.63504, 0, 1, -0.6)
+shape = SubResource("BoxShape3D_psahw")
+target_position = Vector3(0, 0, 0)
+debug_shape_custom_color = Color(0.638265, 0.596324, 0.211285, 1)
+
+[node name="ChestRay" type="RayCast3D" parent="." unique_id=1377602171]
+transform = Transform3D(1, 0, 0, 0, -2.88495e-08, -1, 0, 0.66, -4.37114e-08, 0, 0.7, -0.1)
+
+[node name="Head" type="Node3D" parent="." unique_id=381632665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7264215, -0.14369965)
+
+[node name="PlayerCamera" type="Camera3D" parent="Head" unique_id=1603942966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+keep_aspect = 0
+doppler_tracking = 2
+fov = 90.0
+
+[node name="CameraRay" type="RayCast3D" parent="Head/PlayerCamera" unique_id=508017021]
+transform = Transform3D(1, 0, 0, 0, -9.09668e-08, -1, 0, 2.08108, -4.37114e-08, 0, 0, 0)
+
+[node name="Crosshair" type="SubViewportContainer" parent="Head/PlayerCamera" unique_id=211246230]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Head/PlayerCamera/Crosshair" unique_id=868308553]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(32, 32)
+render_target_update_mode = 4
+
+[node name="Crossair" type="Control" parent="Head/PlayerCamera/Crosshair/SubViewport" unique_id=858210411]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosshair" type="TextureRect" parent="Head/PlayerCamera/Crosshair/SubViewport/Crossair" unique_id=1338480021]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_th2x0")
+
+[node name="Gauges" type="Sprite3D" parent="Head/PlayerCamera" unique_id=2014328274]
+transform = Transform3D(0.302284, 0, 0.0736334, 0, 0.284498, 0, -0.0809968, 0, 0.274804, -0.203861, -0.775649, -2.07171)
+double_sided = false
+no_depth_test = true
+alpha_cut = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_bhfuo")
+region_enabled = true
+region_rect = Rect2(0, 432, 960, 108)
+script = ExtResource("5_bhfuo")
+
+[node name="SubViewport" type="SubViewport" parent="Head/PlayerCamera/Gauges" unique_id=574193586]
+physics_interpolation_mode = 0
+transparent_bg = true
+handle_input_locally = false
+anisotropic_filtering_level = 0
+canvas_item_default_texture_filter = 0
+positional_shadow_atlas_size = 128
+size = Vector2i(960, 540)
+
+[node name="HUD Gauges" parent="Head/PlayerCamera/Gauges/SubViewport" unique_id=15710330 instance=ExtResource("3_tee05")]
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="." unique_id=708991527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975, 0)
+shape = SubResource("CapsuleShape3D_pbw6q")
+
+[node name="Debug" type="Control" parent="." unique_id=1043816382]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_bmxlf")
+script = ExtResource("5_bhhdu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Debug" unique_id=391239313]
+layout_mode = 0
+offset_right = 79.0
+offset_bottom = 140.0
+
+[node name="PropertyContainer" type="VBoxContainer" parent="Debug/MarginContainer" unique_id=819176429]
+layout_mode = 2
+theme = ExtResource("19_6efuh")
+
+[node name="DevConsole" type="Control" parent="." unique_id=642244767]
+visible = false
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 540.0
+grow_horizontal = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DevConsole" unique_id=152934257]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Console" type="RichTextLabel" parent="DevConsole/VBoxContainer" unique_id=356179353]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DeveloperType" type="TextEdit" parent="DevConsole/VBoxContainer" unique_id=560755663]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 10
+placeholder_text = "> Enter Command Here"
+
+[node name="Footsteps" type="Node3D" parent="." unique_id=834693317]
+
+[node name="sStone" type="AudioStreamPlayer3D" parent="Footsteps" unique_id=1085489340]
+
+[node name="FloorMaterialRay" type="RayCast3D" parent="Footsteps" unique_id=1305313098]
+target_position = Vector3(0, -0.1, 0)
+debug_shape_custom_color = Color(0.537425, 0.206944, 0.234573, 1)
+
+[node name="MovementStateMachine" parent="." unique_id=674053596 instance=ExtResource("7_h5j22")]
+
+[node name="ActionStateMachine" type="Node3D" parent="." unique_id=1590208790 node_paths=PackedStringArray("CurrentState")]
+script = ExtResource("6_nn08x")
+CurrentState = NodePath("IdleActionState")
+
+[node name="IdleActionState" type="Node3D" parent="ActionStateMachine" unique_id=379195615]
+script = ExtResource("12_glx4g")
+
+[node name="InteractState" type="Node3D" parent="ActionStateMachine" unique_id=1235707061]
+script = ExtResource("15_1e7my")
+
+[node name="Timer" type="Timer" parent="ActionStateMachine/InteractState" unique_id=1464574671]
+wait_time = 0.3
+one_shot = true
+
+[node name="PickUpState" type="Node3D" parent="ActionStateMachine" unique_id=1219884254]
+
+[node name="ThrowState" type="Node3D" parent="ActionStateMachine" unique_id=1461950105]
+
+[node name="AttackStateMachine" type="Node3D" parent="." unique_id=1054849884]
+
+[node name="IdleAttackState" type="Node3D" parent="AttackStateMachine" unique_id=1955718245]
+
+[node name="LightAttackState" type="Node3D" parent="AttackStateMachine" unique_id=871683417]
+
+[node name="HeavyAttackState" type="Node3D" parent="AttackStateMachine" unique_id=2000264537]
+
+[node name="StompState" type="Node3D" parent="AttackStateMachine" unique_id=1759156467]
+
+[node name="KickState" type="Node3D" parent="AttackStateMachine" unique_id=277562673]
+
+[node name="AirAttackState" type="Node3D" parent="AttackStateMachine" unique_id=1806930515]
+
+[node name="CastState" type="Node3D" parent="AttackStateMachine" unique_id=990191259]
+
+[node name="SneakAttackState" type="Node3D" parent="AttackStateMachine" unique_id=863343839]
+
+[node name="BlockState" type="Node3D" parent="AttackStateMachine" unique_id=327543689]
+
+[node name="ParryState" type="Node3D" parent="AttackStateMachine" unique_id=1446627301]
+
+[connection signal="timeout" from="ActionStateMachine/InteractState/Timer" to="ActionStateMachine/InteractState" method="_on_timer_timeout"]

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Core" format=3 uid="uid://c1sclmb0v5kgo"]
+
+[ext_resource type="Script" uid="uid://bhb3sgldbgabd" path="res://Scripts/Custom Resources/Core.gd" id="1_pbfeo"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_pbfeo")
+Health = 10.0
+MaxHealth = 10
+Mana = 0.0
+MaxMana = 0
+Stamina = 10.0
+MaxStamina = 10
+Hunger = 100.0
+MaxHunger = 100
+Fatigue = 0.0
+MaxFatigue = 0.0
+Temperature = 0.0
+Toxicity = 0.0
+Currency = 0
+InventorySlots = 4
+Reputation = 0.0
+metadata/_custom_type_script = "uid://bhb3sgldbgabd"
