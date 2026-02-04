@@ -1,22 +1,22 @@
-[gd_scene format=3 uid="uid://s8uayq5taxrt"]
+[gd_scene format=3 uid="uid://bfac48q6v8cxh"]
 
-[ext_resource type="Theme" uid="uid://dcirjlthjc61h" path="res://Assets/Themes/ProgressBars.tres" id="1_6dxst"]
-[ext_resource type="Texture2D" uid="uid://de2w4hnv4orca" path="res://Assets/UI/HUD/Gauge Nine-Patch.png" id="2_s1v7n"]
-[ext_resource type="Texture2D" uid="uid://catw02vb1kte7" path="res://Assets/UI/HUD/HealthLost.png" id="2_xxun0"]
-[ext_resource type="Texture2D" uid="uid://bw3ssq865ia7m" path="res://Assets/UI/HUD/HealthGradient.png" id="3_dq4jv"]
-[ext_resource type="Texture2D" uid="uid://dibj7m38e3dy0" path="res://Assets/UI/HUD/ManaGradient.png" id="4_xn3lx"]
-[ext_resource type="Texture2D" uid="uid://173fflewj5c3" path="res://Assets/UI/HUD/HPBadge.png" id="5_a8a6s"]
-[ext_resource type="Texture2D" uid="uid://cur5efae5eyto" path="res://Assets/UI/HUD/ManaLost.png" id="5_g7nah"]
-[ext_resource type="Theme" uid="uid://c1iwu7wm7tjk3" path="res://Assets/Themes/Numbers.tres" id="5_gyacv"]
-[ext_resource type="Texture2D" uid="uid://r43xuwcwhbij" path="res://Assets/UI/HUD/StaminaGradient.png" id="5_p77ps"]
-[ext_resource type="Texture2D" uid="uid://bm7oqjnof23hv" path="res://Assets/UI/HUD/StaminaLost.png" id="7_gyacv"]
-[ext_resource type="Texture2D" uid="uid://c3uipdosmf4uh" path="res://Assets/UI/HUD/Gauge Diamond.png" id="7_n265y"]
-[ext_resource type="Texture2D" uid="uid://dt0fsqu34gany" path="res://Assets/UI/HUD/MPBadge.png" id="9_1g6si"]
-[ext_resource type="Texture2D" uid="uid://dxfhuxtiy4mai" path="res://Assets/UI/HUD/Gauge MP Diamond.png" id="11_ieeku"]
-[ext_resource type="Texture2D" uid="uid://be2hj2p0hcfpp" path="res://Assets/UI/HUD/SPBadge.png" id="12_xxun0"]
-[ext_resource type="Texture2D" uid="uid://dxvojqsnoallr" path="res://Assets/UI/HUD/Gauge SP Diamond.png" id="15_1care"]
+[ext_resource type="Theme" uid="uid://dcirjlthjc61h" path="res://Theme/ProgressBars.tres" id="1_6dxst"]
+[ext_resource type="Texture2D" uid="uid://de2w4hnv4orca" path="res://UI/HUD/Gauge Nine-Patch.png" id="2_s1v7n"]
+[ext_resource type="Texture2D" uid="uid://catw02vb1kte7" path="res://UI/HUD/HealthLost.png" id="2_xxun0"]
+[ext_resource type="Texture2D" uid="uid://bw3ssq865ia7m" path="res://UI/HUD/HealthGradient.png" id="3_dq4jv"]
+[ext_resource type="Texture2D" uid="uid://dibj7m38e3dy0" path="res://UI/HUD/ManaGradient.png" id="4_xn3lx"]
+[ext_resource type="Texture2D" uid="uid://173fflewj5c3" path="res://UI/HUD/HPBadge.png" id="5_a8a6s"]
+[ext_resource type="Texture2D" uid="uid://cur5efae5eyto" path="res://UI/HUD/ManaLost.png" id="5_g7nah"]
+[ext_resource type="Theme" uid="uid://c1iwu7wm7tjk3" path="res://Theme/Numbers.tres" id="5_gyacv"]
+[ext_resource type="Texture2D" uid="uid://r43xuwcwhbij" path="res://UI/HUD/StaminaGradient.png" id="5_p77ps"]
+[ext_resource type="Texture2D" uid="uid://bm7oqjnof23hv" path="res://UI/HUD/StaminaLost.png" id="7_gyacv"]
+[ext_resource type="Texture2D" uid="uid://c3uipdosmf4uh" path="res://UI/HUD/Gauge Diamond.png" id="7_n265y"]
+[ext_resource type="Texture2D" uid="uid://dt0fsqu34gany" path="res://UI/HUD/MPBadge.png" id="9_1g6si"]
+[ext_resource type="Texture2D" uid="uid://dxfhuxtiy4mai" path="res://UI/HUD/Gauge MP Diamond.png" id="11_ieeku"]
+[ext_resource type="Texture2D" uid="uid://be2hj2p0hcfpp" path="res://UI/HUD/SPBadge.png" id="12_xxun0"]
+[ext_resource type="Texture2D" uid="uid://dxvojqsnoallr" path="res://UI/HUD/Gauge SP Diamond.png" id="15_1care"]
 
-[node name="HUD Gauges" type="Control"]
+[node name="HUD Gauges" type="Control" unique_id=743954816]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HP" type="TextureProgressBar" parent="."]
+[node name="HP" type="TextureProgressBar" parent="." unique_id=641641997]
 custom_minimum_size = Vector2(176, 32)
 layout_mode = 0
 offset_left = 32.0
@@ -43,7 +43,7 @@ texture_over = ExtResource("2_s1v7n")
 texture_progress = ExtResource("3_dq4jv")
 tint_over = Color(0.988235, 0.756863, 0, 1)
 
-[node name="HPValue" type="Label" parent="HP"]
+[node name="HPValue" type="Label" parent="HP" unique_id=2068532561]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -57,7 +57,7 @@ theme = ExtResource("5_gyacv")
 text = "3"
 vertical_alignment = 1
 
-[node name="HPBadge" type="TextureProgressBar" parent="HP"]
+[node name="HPBadge" type="TextureProgressBar" parent="HP" unique_id=1147413979]
 layout_mode = 0
 offset_left = -32.0
 offset_right = 10.0
@@ -65,7 +65,7 @@ offset_bottom = 32.0
 texture_over = ExtResource("5_a8a6s")
 tint_over = Color(0.988674, 0.756245, 1.54018e-06, 1)
 
-[node name="HPDiamond" type="TextureProgressBar" parent="HP"]
+[node name="HPDiamond" type="TextureProgressBar" parent="HP" unique_id=412818856]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 168.0
@@ -74,7 +74,7 @@ offset_bottom = 32.0
 texture_under = ExtResource("7_n265y")
 tint_under = Color(0.988235, 0.756863, 0, 1)
 
-[node name="MP" type="TextureProgressBar" parent="."]
+[node name="MP" type="TextureProgressBar" parent="." unique_id=1181562211]
 custom_minimum_size = Vector2(136, 32)
 layout_mode = 0
 offset_left = 32.0
@@ -93,7 +93,7 @@ texture_over = ExtResource("2_s1v7n")
 texture_progress = ExtResource("4_xn3lx")
 tint_over = Color(0.988235, 0.756863, 0, 1)
 
-[node name="MPValue" type="Label" parent="MP"]
+[node name="MPValue" type="Label" parent="MP" unique_id=1048728906]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -107,7 +107,7 @@ theme = ExtResource("5_gyacv")
 text = "5"
 vertical_alignment = 1
 
-[node name="MPBadge" type="TextureProgressBar" parent="MP"]
+[node name="MPBadge" type="TextureProgressBar" parent="MP" unique_id=869567908]
 layout_mode = 0
 offset_left = -32.0
 offset_right = 10.0
@@ -115,7 +115,7 @@ offset_bottom = 32.0
 texture_over = ExtResource("9_1g6si")
 tint_over = Color(0.988235, 0.756863, 0, 1)
 
-[node name="MPDiamond" type="TextureProgressBar" parent="MP"]
+[node name="MPDiamond" type="TextureProgressBar" parent="MP" unique_id=1208133828]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 168.0
@@ -124,7 +124,7 @@ offset_bottom = 32.0
 texture_under = ExtResource("11_ieeku")
 tint_under = Color(0.988235, 0.756863, 0, 1)
 
-[node name="SP" type="TextureProgressBar" parent="."]
+[node name="SP" type="TextureProgressBar" parent="." unique_id=428518093]
 custom_minimum_size = Vector2(136, 32)
 layout_mode = 0
 offset_left = 32.0
@@ -142,7 +142,7 @@ texture_over = ExtResource("2_s1v7n")
 texture_progress = ExtResource("5_p77ps")
 tint_over = Color(0.988235, 0.756863, 0, 1)
 
-[node name="SPValue" type="Label" parent="SP"]
+[node name="SPValue" type="Label" parent="SP" unique_id=1655353513]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -156,7 +156,7 @@ theme = ExtResource("5_gyacv")
 text = "9"
 vertical_alignment = 1
 
-[node name="SPBadge" type="TextureProgressBar" parent="SP"]
+[node name="SPBadge" type="TextureProgressBar" parent="SP" unique_id=800701169]
 layout_mode = 0
 offset_left = -32.0
 offset_right = 10.0
@@ -164,7 +164,7 @@ offset_bottom = 32.0
 texture_over = ExtResource("12_xxun0")
 tint_over = Color(0.988235, 0.756863, 0, 1)
 
-[node name="SPDiamond" type="TextureProgressBar" parent="SP"]
+[node name="SPDiamond" type="TextureProgressBar" parent="SP" unique_id=981364236]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 168.0

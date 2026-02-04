@@ -39,17 +39,15 @@ Singletons="*uid://dmlflxtn83ymf"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
-window/size/initial_position_type=4
 window/size/always_on_top=true
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 window/physics_jitter_fix=0.5
 window/physics_ticks_per_second=144
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/shader_assign/plugin.cfg", "res://addons/worldtag/plugin.cfg")
+enabled=PackedStringArray("res://addons/shader_assign/plugin.cfg", "res://addons/terrain_3d/plugin.cfg", "res://addons/worldtag/plugin.cfg")
 
 [file_customization]
 

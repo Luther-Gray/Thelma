@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="Attribute" format=3 uid="uid://dxpnmjar4qxac"]
+[gd_resource type="Resource" script_class="Attribute" format=3 uid="uid://bbdox3o31dn22"]
 
-[ext_resource type="Script" uid="uid://cr10k57egyln8" path="res://Scripts/Custom Resources/Attributes.gd" id="1_srbwq"]
+[ext_resource type="Script" uid="uid://cr10k57egyln8" path="res://Resources/Attributes.gd" id="1_srbwq"]
 
 [resource]
 script = ExtResource("1_srbwq")
-Alacrity = 10
+Alacrity = 100
 metadata/_custom_type_script = "uid://cr10k57egyln8"

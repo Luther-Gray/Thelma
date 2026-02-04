@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://djd4taddx88tp"]
+
+[ext_resource type="Texture2D" uid="uid://cgiod0pud684d" path="res://World/Plate Zero/Thelma Overworld.png" id="1_1i0ow"]
+[ext_resource type="PackedScene" uid="uid://booly3i31xoih" path="res://Actors/1.Player/Player.tscn" id="2_74cam"]
+[ext_resource type="Script" uid="uid://bhb3sgldbgabd" path="res://Resources/Core.gd" id="3_xaqfc"]
+[ext_resource type="Resource" uid="uid://bbdox3o31dn22" path="res://Actors/1.Player/PlayerAttributes.tres" id="4_i5vmu"]
+[ext_resource type="Resource" uid="uid://duif5q3eonbbn" path="res://Actors/1.Player/PlayerClasses.tres" id="5_6u8o6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_74cam"]
+sky_top_color = Color(0.7804251, 0.61048794, 0.3307829, 1)
+sky_horizon_color = Color(1.2573874, 1.0865529, 1.0104957, 1)
+ground_bottom_color = Color(0.81110895, 0.29770744, 0.27318412, 1)
+ground_horizon_color = Color(1.2573874, 1.0865529, 1.0104957, 1)
+
+[sub_resource type="Sky" id="Sky_ppqo4"]
+sky_material = SubResource("ProceduralSkyMaterial_74cam")
+
+[sub_resource type="Environment" id="Environment_4y4a6"]
+background_mode = 2
+sky = SubResource("Sky_ppqo4")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xaqfc"]
+albedo_texture = ExtResource("1_1i0ow")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6u8o6"]
+material = SubResource("StandardMaterial3D_xaqfc")
+size = Vector2(49152, 49152)
+
+[sub_resource type="Gradient" id="Gradient_xaqfc"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i5vmu"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6u8o6"]
+noise = SubResource("FastNoiseLite_i5vmu")
+color_ramp = SubResource("Gradient_xaqfc")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_fj2bt"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.5,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"flat_terrain_normals": true,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise_texture": SubResource("NoiseTexture2D_6u8o6"),
+&"projection_threshold": 0.8
+}
+world_background = 0
+texture_filtering = 1
+show_colormap = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i0ow"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_74cam"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_1i0ow")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_ppqo4"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_74cam")])
+
+[sub_resource type="Resource" id="Resource_xaqfc"]
+resource_local_to_scene = true
+script = ExtResource("3_xaqfc")
+Health = 10.0
+MaxHealth = 10
+Stamina = 10.0
+MaxStamina = 10
+Hunger = 100.0
+MaxHunger = 100
+InventorySlots = 4
+metadata/_custom_type_script = "uid://bhb3sgldbgabd"
+
+[sub_resource type="SphereMesh" id="SphereMesh_i5vmu"]
+flip_faces = true
+radius = 24576.0
+height = 24576.0
+radial_segments = 32
+rings = 8
+is_hemisphere = true
+
+[node name="PlateZero" type="Node3D" unique_id=721026211]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=724523442]
+transform = Transform3D(-0.83195424, 0.38958567, -0.3950636, 0, 0.712026, 0.70215315, 0.5548444, 0.5841592, -0.5923731, 0, 5229, 0)
+light_energy = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_max_distance = 273.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1359447958]
+environment = SubResource("Environment_4y4a6")
+
+[node name="256 - Overworld" type="MeshInstance3D" parent="." unique_id=1586625248]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 44.650787, 0)
+visible = false
+mesh = SubResource("QuadMesh_6u8o6")
+
+[node name="PlateTerrain" type="Terrain3D" parent="." unique_id=10222068]
+data_directory = "res://System/TerrainData/"
+material = SubResource("Terrain3DMaterial_fj2bt")
+assets = SubResource("Terrain3DAssets_ppqo4")
+vertex_spacing = 6.0
+show_colormap = true
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." unique_id=613017845 instance=ExtResource("2_74cam")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 299, -10980)
+ResourceCore = SubResource("Resource_xaqfc")
+Attributes = ExtResource("4_i5vmu")
+Class = ExtResource("5_6u8o6")
+
+[node name="Skybox" type="MeshInstance3D" parent="." unique_id=1525431587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -134.56714, 0)
+mesh = SubResource("SphereMesh_i5vmu")

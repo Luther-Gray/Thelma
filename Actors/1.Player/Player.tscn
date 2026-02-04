@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://booly3i31xoih"]
 
-[ext_resource type="Script" path="res://Actors/1.Player/PlayerController.gd" id="1_h5j22"]
-[ext_resource type="PackedScene" path="res://Actors/1.Player/HUDGauges.tscn" id="3_tee05"]
+[ext_resource type="Script" uid="uid://bs5m82pau1qxd" path="res://Actors/1.Player/PlayerController.gd" id="1_h5j22"]
+[ext_resource type="PackedScene" uid="uid://bfac48q6v8cxh" path="res://Actors/1.Player/HUDGauges.tscn" id="3_tee05"]
 [ext_resource type="Script" uid="uid://dsqns73tdtcwn" path="res://Actors/1.Player/State Machine/PlayerHUD.gd" id="5_bhfuo"]
 [ext_resource type="Script" uid="uid://b6n1jdur57rse" path="res://Scripts/DevScripts/Debug.gd" id="5_bhhdu"]
 [ext_resource type="Texture2D" uid="uid://crkoy73lmbc26" path="res://UI/HUD/Crosshair.png" id="5_th2x0"]
@@ -11,8 +11,6 @@
 [ext_resource type="Script" uid="uid://dxtjdegyu66jm" path="res://Actors/1.Player/State Machine/ActionStates/IdleActionState.gd" id="12_glx4g"]
 [ext_resource type="Script" uid="uid://o4knu7m12xbd" path="res://Actors/1.Player/State Machine/ActionStates/InteractState.gd" id="15_1e7my"]
 [ext_resource type="Theme" uid="uid://dcirjlthjc61h" path="res://Theme/ProgressBars.tres" id="19_6efuh"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qnwc6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_psahw"]
 
@@ -31,12 +29,11 @@ MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 0
 MarginContainer/constants/margin_top = 10
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h5j22"]
+
 [node name="Player" type="CharacterBody3D" unique_id=613017845]
 floor_max_angle = 1.22173
 script = ExtResource("1_h5j22")
-
-[node name="PlayerAnimTree" type="AnimationTree" parent="." unique_id=1184906097]
-tree_root = SubResource("AnimationNodeStateMachine_qnwc6")
 
 [node name="CrouchRayCast" type="RayCast3D" parent="." unique_id=1352386546]
 transform = Transform3D(1, 0, 0, 0, -2.3, 8.74228e-08, 0, -2.01072e-07, -1, 0, 0, 0)
@@ -59,6 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 keep_aspect = 0
 doppler_tracking = 2
 fov = 90.0
+far = 10000.0
 
 [node name="CameraRay" type="RayCast3D" parent="Head/PlayerCamera" unique_id=508017021]
 transform = Transform3D(1, 0, 0, 0, -9.09668e-08, -1, 0, 2.08108, -4.37114e-08, 0, 0, 0)
@@ -231,5 +229,9 @@ one_shot = true
 [node name="BlockState" type="Node3D" parent="AttackStateMachine" unique_id=327543689]
 
 [node name="ParryState" type="Node3D" parent="AttackStateMachine" unique_id=1446627301]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=931584642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_h5j22")
 
 [connection signal="timeout" from="ActionStateMachine/InteractState/Timer" to="ActionStateMachine/InteractState" method="_on_timer_timeout"]

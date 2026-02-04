@@ -7,7 +7,6 @@ extends CharacterBody3D
 
 #//Imported
 @onready var Head: Node3D = $Head
-@onready var StardustAnim: AnimationPlayer = $Stardust/AnimationPlayer
 @onready var Camera: Camera3D = $Head/PlayerCamera
 @onready var Collision: CollisionShape3D = $PlayerCollision
 @onready var CameraRay: RayCast3D = $Head/PlayerCamera/CameraRay
@@ -44,9 +43,6 @@ var isMouseCaptured : bool = true
 func _ready() -> void:
 	Singletons.PLAYER = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-	print(Attributes.Alacrity)
-
 #// Input Events---------------------------------------
 func _input(event: InputEvent) -> void:
 
@@ -70,9 +66,9 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 #// DEBUG
-	Singletons.Debug._add_debug("Current Velocity", str(velocity), 1)
-	Singletons.Debug._add_debug("Movement State", str(MOVState.CurrentState.name), 2)
-	Singletons.Debug._add_debug("Action State", str(ACTState.CurrentState.name), 3)
+	#Singletons.Debug._add_debug("Current Velocity", str(velocity), 1)
+	#Singletons.Debug._add_debug("Movement State", str(MOVState.CurrentState.name), 2)
+	#Singletons.Debug._add_debug("Action State", str(ACTState.CurrentState.name), 3)
 
 # Add the Gravity-----------------------
 	if ! is_on_floor():
@@ -84,14 +80,6 @@ func _physics_process(delta: float) -> void:
 # Handle Walking --------------------------------
 	InputDir = Input.get_vector("Left", "Right", "Forwards", "Backwards")
 	Direction = lerp(Direction , (transform.basis * Vector3(InputDir.x, 0, InputDir.y)).normalized(), delta * 8)
-	# Anim Handling
-	if InputDir == Vector2(0,0):
-		StardustAnim.current_animation = "LOC_Idle"
-		StardustAnim.speed_scale = 0.2
-	if InputDir== Vector2(0,-1):
-		StardustAnim.current_animation = "LOC_Walk_F"
-		StardustAnim.speed_scale = 0.8
-		print("Forwards")
 
 	# Move
 	if Direction:
